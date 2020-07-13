@@ -1,23 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import SearchBar from './components/SearchBar';
+import CovidResult from './components/CovidResult';
 
 function App() {
+  console.log("Mounted App");
+  let [country, setCountry] = useState("");
+  let res = <React.Fragment/>
+
+  if (country.length > 0) {
+    res = <CovidResult country={country} key={country}></CovidResult>
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <SearchBar setCountry={setCountry}></SearchBar>
+        { res }
       </header>
     </div>
   );
