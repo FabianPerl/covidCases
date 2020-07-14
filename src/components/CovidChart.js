@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 class CustomizedYAxisTick extends PureComponent {
   render() {
     const {
-      x, y, stroke, payload,
+      x, y, payload,
     } = this.props;
 
     return (
@@ -18,7 +18,7 @@ class CustomizedYAxisTick extends PureComponent {
 class CustomizedAxisTick extends PureComponent {
   render() {
     const {
-      x, y, stroke, payload,
+      x, y, payload,
     } = this.props;
 
     return (
@@ -28,6 +28,19 @@ class CustomizedAxisTick extends PureComponent {
     );
   }
 }
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label">{`Date: ${label}`}</p>
+        <p className="label">{`Active Cases: ${payload[0].value}`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
 
 export default function CovidChart (props) {
   return (
@@ -42,8 +55,8 @@ export default function CovidChart (props) {
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" height={100} tick={<CustomizedAxisTick />}/>
       <YAxis tick={<CustomizedYAxisTick/>}/>
-      <Tooltip />
-      <Line connectNulls type="monotone" dataKey="active" stroke="#8884d8" fill="#8884d8" />
+      <Tooltip content={CustomTooltip}/>
+      <Line connectNulls type="monotone" dataKey="active" stroke="#3399ff" fill="#3399ff" />
     </LineChart>
   )
 }

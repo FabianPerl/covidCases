@@ -4,7 +4,6 @@ import SearchBar from './components/SearchBar';
 import CovidResult from './components/CovidResult';
 
 function App() {
-  console.log("Mounted App");
   let [country, setCountry] = useState("");
   let res = <React.Fragment/>
 

@@ -2,7 +2,6 @@ import React from 'react';
 import getCasesFromCountry from '../util/CovidService';
 import CovidChart from './CovidChart';
 
-
 class CovidResult extends React.Component {
 
   constructor (props) {
